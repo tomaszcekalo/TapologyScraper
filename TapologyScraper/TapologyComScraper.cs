@@ -1,5 +1,6 @@
 ﻿using AngleSharp;
 using System;
+using System.Threading.Tasks;
 
 namespace TapologyScraper
 {
@@ -23,23 +24,27 @@ namespace TapologyScraper
         {
         }
 
-        public MainPage ScrapeMainPage(string url = Consts.MainPageUrl)
+        public async Task<MainPage> ScrapeMainPage(string url = Consts.MainPageUrl)
         {
+            var document = await _context.OpenAsync(url);
             return new MainPage();
         }
 
-        public Promotions ScrapePromotions(string url = Consts.PromotionsUrl)
+        public async Task<Promotions> ScrapePromotions(string url = Consts.PromotionsUrl)
         {
+            var document = await _context.OpenAsync(url);
             return new Promotions();
         }
 
-        public PredictionsLeaderboard ScrapePredictionsleaderboard(string url = "")//example: https://www.tapology.com/fightcenter/events/101867-ufc-fight-night/predictions-leaderboard
+        public async Task<PredictionsLeaderboard> ScrapePredictionsLeaderboard(string url = "")//example: https://www.tapology.com/fightcenter/events/101867-ufc-fight-night/predictions-leaderboard
         {
+            var document = await _context.OpenAsync(url);
             return new PredictionsLeaderboard();
         }
 
-        public FightCenter ScrapeFightCenter(string url = Consts.FightCenterUrl)
+        public async Task<FightCenter> ScrapeFightCenter(string url = Consts.FightCenterUrl)
         {
+            var document = await _context.OpenAsync(url);
             return new FightCenter();
         }
     }
